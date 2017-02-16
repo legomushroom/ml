@@ -1,0 +1,12 @@
+# Created by Octave 4.0.3, Wed Feb 15 21:25:35 2017 CST <mac@legomushroom-mac.local>
+# name: test
+# type: matrix
+# rows: 5
+# columns: 2
+ 1 200
+ 2 300
+ 3 500
+ 7 200
+ 10 1200
+
+

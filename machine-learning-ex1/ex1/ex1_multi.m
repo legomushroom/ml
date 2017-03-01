@@ -3,11 +3,11 @@
 %
 %  Instructions
 %  ------------
-% 
-%  This file contains code that helps you get started on the
-%  linear regression exercise. 
 %
-%  You will need to complete the following functions in this 
+%  This file contains code that helps you get started on the
+%  linear regression exercise.
+%
+%  You will need to complete the following functions in this
 %  exericse:
 %
 %     warmUpExercise.m
@@ -60,13 +60,13 @@ X = [ones(m, 1) X];
 % ====================== YOUR CODE HERE ======================
 % Instructions: We have provided you with the following starter
 %               code that runs gradient descent with a particular
-%               learning rate (alpha). 
+%               learning rate (alpha).
 %
-%               Your task is to first make sure that your functions - 
-%               computeCost and gradientDescent already work with 
+%               Your task is to first make sure that your functions -
+%               computeCost and gradientDescent already work with
 %               this starter code and support multiple variables.
 %
-%               After that, try running gradient descent with 
+%               After that, try running gradient descent with
 %               different values of alpha and see which one gives
 %               you the best result.
 %
@@ -81,24 +81,30 @@ X = [ones(m, 1) X];
 
 fprintf('Running gradient descent ...\n');
 
-% Choose some alpha value
-alpha = 0.01;
-num_iters = 400;
 
-% Init Theta and Run Gradient Descent 
-theta = zeros(3, 1);
-[theta, J_history] = gradientDescentMulti(X, y, theta, alpha, num_iters);
+alphas = [ 0.5; 0.3; 0.1; 0.01; 0.03; 0.001; 0.003 ];
+colors = [ 'b', 'r', 'k', 'orange', 'yellow', 'green' ];
+for i = 1:length(alphas)
+  % Choose some alpha value
+  alpha = alphas(i);
+  num_iters = 50;
 
-% Plot the convergence graph
-figure;
-plot(1:numel(J_history), J_history, '-b', 'LineWidth', 2);
-xlabel('Number of iterations');
-ylabel('Cost J');
+  % Init Theta and Run Gradient Descent
+  theta = zeros(3, 1);
+  [theta, J_history] = gradientDescentMulti(X, y, theta, alpha, num_iters);
 
-% Display gradient descent's result
-fprintf('Theta computed from gradient descent: \n');
-fprintf(' %f \n', theta);
-fprintf('\n');
+  % Plot the convergence graph
+  % figure;
+  plot(1:numel(J_history), J_history, colors(i), 'LineWidth', 2);
+  hold on;
+  xlabel('Number of iterations');
+  ylabel('Cost J');
+
+  % Display gradient descent's result
+  fprintf('Theta computed from gradient descent: \n');
+  fprintf(' %f \n', theta);
+  fprintf('\n');
+end
 
 % Estimate the price of a 1650 sq-ft, 3 br house
 % ====================== YOUR CODE HERE ======================
@@ -120,12 +126,12 @@ pause;
 fprintf('Solving with normal equations...\n');
 
 % ====================== YOUR CODE HERE ======================
-% Instructions: The following code computes the closed form 
+% Instructions: The following code computes the closed form
 %               solution for linear regression using the normal
-%               equations. You should complete the code in 
+%               equations. You should complete the code in
 %               normalEqn.m
 %
-%               After doing so, you should complete this code 
+%               After doing so, you should complete this code
 %               to predict the price of a 1650 sq-ft, 3 br house.
 %
 
@@ -156,4 +162,3 @@ price = 0; % You should change this
 
 fprintf(['Predicted price of a 1650 sq-ft, 3 br house ' ...
          '(using normal equations):\n $%f\n'], price);
-
